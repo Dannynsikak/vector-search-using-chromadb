@@ -217,6 +217,10 @@ def search_query(query, mode="text"):
     collection = image_collection if mode == "image" else text_collection
     results = collection.query(query_embeddings=query_embedding, n_results=1)
     query_time = time.time() - start_time  # Measure query time
+
+    # Check if results are found
+    if not results or not results['metadatas'][0]:
+        return "No results found", "No match", f"Query time: {query_time:.4f} seconds"
     
     # Retrieve the result
     if mode == "image":
