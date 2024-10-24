@@ -72,7 +72,14 @@ image_paths = [
     "img/Tuberculosis.jpg",
     "img/waistpain.jpeg",
     "img/asthma.jpeg",
-    "img/Epilepsy-monitoring-evaluation.webp"
+    "img/Epilepsy-monitoring-evaluation.webp",
+    "img/brain.jpeg",
+    "img/deepbrainscan.jpeg",
+    "img/640px-Asthma_attack.png",
+    "img/parkisons.jpeg",
+    "img/hypertension_heart.jpg",
+    "img/hypertensiveeffects.jpg"
+
 ]
 
 # Preprocess images and generate embeddings
