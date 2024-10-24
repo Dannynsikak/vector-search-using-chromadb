@@ -21,7 +21,8 @@ To set up the project, you will need Python 3.8+ and some dependencies.
 
 1. Clone the Repository
 
-git clone git@github.com:Dannynsikak/vector-search-using-chromadb.git
+git clone 
+git@github.com:Dannynsikak/vector-search-using-chromadb.git
 
 cd chromadb-performance 2. Create a Virtual Environment (Optional but Recommended)
 
