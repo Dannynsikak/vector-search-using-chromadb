@@ -1,0 +1,104 @@
+Type 2 Diabetes
+Alternate Names: Adult-onset diabetes, Non-insulin-dependent diabetes
+Overview: Type 2 Diabetes is a chronic condition that affects the way the body processes blood sugar (glucose).
+Causes: Insulin resistance, Obesity, Genetic predisposition
+Symptoms: Fatigue, Increased thirst, Frequent urination
+Diagnosis: Blood glucose tests, Oral glucose tolerance test
+Treatment: Lifestyle changes, Oral medications, Insulin therapy
+Prevention: Healthy weight, Regular physical activity
+Complications: Cardiovascular disease, Kidney damage
+Prognosis: With proper management, most people with Type 2 Diabetes can lead healthy lives.
+=== 
+Alzheimer’s Disease
+Alternate Names: Senile Dementia, Alzheimer’s
+Overview: Alzheimer’s Disease is a progressive neurodegenerative disorder affecting memory and behavior.
+Causes: Genetic factors, Age, Family history
+Symptoms: Memory loss, Difficulty completing tasks
+Diagnosis: Cognitive tests, Brain imaging
+Treatment: Medications, Cognitive therapy, Supportive care
+Prevention: Physical exercise, Mental exercise
+Complications: Difficulty swallowing, Infections
+Prognosis: Progressive disease with no cure. Life expectancy is 4-8 years.
+=== 
+Acute Lymphoblastic Leukemia
+Alternate Names: Acute Lymphocytic Leukemia
+Overview: Cancer affecting blood and bone marrow, common in children.
+Causes: Genetic mutations, Radiation exposure
+Symptoms: Fever, Frequent infections, Fatigue
+Diagnosis: Blood tests, Bone marrow biopsy
+Treatment: Chemotherapy, Radiation therapy, Stem cell transplant
+Prevention: No proven ways to prevent ALL.
+Complications: Infections, Anemia, Low platelets
+Prognosis: High survival rate in children, Lower in adults.
+   {
+    'Disease Name': 'Chronic Obstructive Pulmonary Disease (COPD)',
+    'Alternate Names': 'Chronic Bronchitis, Emphysema',
+    'Overview': 'COPD is a group of progressive lung diseases that cause breathing difficulties.',
+    'Causes': 'Long-term exposure to irritants like tobacco smoke, air pollution, genetic factors',
+    'Symptoms': 'Shortness of breath, Wheezing, Chronic cough',
+    'Diagnosis': 'Spirometry, Chest X-ray, Blood gas analysis',
+    'Treatment': 'Bronchodilators, Steroids, Oxygen therapy, Surgery in severe cases',
+    'Prevention': 'Avoid smoking, Reduce exposure to lung irritants',
+    'Complications': 'Respiratory infections, Heart problems, Lung cancer',
+    'Prognosis': 'Progressive disease with no cure, but manageable with proper treatment.'
+},
+{
+    'Disease Name': 'Asthma',
+    'Alternate Names': 'Bronchial Asthma',
+    'Overview': 'Asthma is a condition in which airways narrow and swell, causing breathing difficulties.',
+    'Causes': 'Allergies, Respiratory infections, Exercise, Environmental factors',
+    'Symptoms': 'Wheezing, Shortness of breath, Chest tightness, Coughing',
+    'Diagnosis': 'Spirometry, Peak flow test, Allergy testing',
+    'Treatment': 'Inhaled corticosteroids, Bronchodilators, Avoiding triggers',
+    'Prevention': 'Avoiding known triggers, Regular exercise, Allergy management',
+    'Complications': 'Frequent hospitalizations, Respiratory failure, Permanent lung damage',
+    'Prognosis': 'Generally good with proper management and avoidance of triggers.'
+},
+{
+    'Disease Name': 'Hypertension (High Blood Pressure)',
+    'Alternate Names': 'High Blood Pressure, HBP',
+    'Overview': 'Hypertension is a condition in which the force of the blood against the artery walls is too high.',
+    'Causes': 'Obesity, Sedentary lifestyle, Salt intake, Stress, Genetics',
+    'Symptoms': 'Often no symptoms, Severe cases may have headaches, Shortness of breath, Nosebleeds',
+    'Diagnosis': 'Blood pressure measurement, Physical examination, Blood tests',
+    'Treatment': 'Lifestyle changes, Medications such as ACE inhibitors and diuretics',
+    'Prevention': 'Healthy diet, Regular exercise, Reducing salt intake, Managing stress',
+    'Complications': 'Heart attack, Stroke, Kidney damage, Vision loss',
+    'Prognosis': 'Good with early diagnosis and treatment, but untreated hypertension can lead to serious complications.'
+},
+{
+    'Disease Name': 'Tuberculosis (TB)',
+    'Alternate Names': 'TB, Mycobacterium tuberculosis infection',
+    'Overview': 'Tuberculosis is a contagious bacterial infection that mainly affects the lungs but can spread to other organs.',
+    'Causes': 'Mycobacterium tuberculosis bacteria, Spread through respiratory droplets',
+    'Symptoms': 'Persistent cough, Weight loss, Night sweats, Fever',
+    'Diagnosis': 'Chest X-ray, Sputum test, Tuberculin skin test',
+    'Treatment': 'Long-term antibiotics such as isoniazid, rifampin',
+    'Prevention': 'BCG vaccine, Avoiding close contact with TB patients',
+    'Complications': 'Lung damage, Spread of infection to other organs, Death if untreated',
+    'Prognosis': 'Curable with appropriate antibiotic treatment, but drug-resistant TB can complicate treatment.'
+},
+{
+    'Disease Name': 'Hepatitis B',
+    'Alternate Names': 'Hep B, HBV',
+    'Overview': 'Hepatitis B is a viral infection that attacks the liver and can cause both acute and chronic disease.',
+    'Causes': 'Hepatitis B virus, Spread through contact with infectious body fluids',
+    'Symptoms': 'Jaundice, Fatigue, Abdominal pain, Nausea, Dark urine',
+    'Diagnosis': 'Blood tests, Liver biopsy',
+    'Treatment': 'Antiviral medications, Liver transplant in severe cases',
+    'Prevention': 'Hepatitis B vaccine, Safe sex practices, Avoiding shared needles',
+    'Complications': 'Liver cirrhosis, Liver cancer, Liver failure',
+    'Prognosis': 'Chronic infection can lead to serious liver damage, but vaccines are highly effective in prevention.'
+},
+{
+    'Disease Name': 'Parkinson’s Disease',
+    'Alternate Names': 'PD, Paralysis Agitans',
+    'Overview': 'Parkinson’s Disease is a neurodegenerative disorder that affects movement.',
+    'Causes': 'Genetic mutations, Environmental factors',
+    'Symptoms': 'Tremors, Slowed movement, Muscle stiffness, Impaired balance',
+    'Diagnosis': 'Neurological exam, Medical history, MRI or PET scans',
+    'Treatment': 'Levodopa, Dopamine agonists, Physical therapy, Deep brain stimulation',
+    'Prevention': 'No known prevention, but regular exercise and a healthy diet may reduce risk',
+    'Complications': 'Difficulty walking, Speech difficulties, Dementia in advanced stages',
+    'Prognosis': 'Chronic and progressive, but manageable with treatment.'
+}
