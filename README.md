@@ -115,13 +115,16 @@ large_embeddings = np.random.random((100000, 128)) # Large dataset
 # Add embeddings in batches
 
 db.batch_add_vectors(large_embeddings, batch_size=5000)
-Contributing
+
+## Contributing
 We welcome contributions! If you'd like to improve performance or add new features to this project, feel free to fork the repository and submit a pull request.
 
-Development Setup
+
+## Development Setup
 Fork the repository.
 Create a new branch for your feature or fix.
 Commit your changes with clear descriptions.
 Push the branch to your fork and submit a pull request.
-License
+## License
+
 This project is licensed under the MIT License. See the LICENSE file for details.
