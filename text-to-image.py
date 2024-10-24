@@ -205,14 +205,18 @@ text_ingestion_time_taken = add_to_collection(
 
 # Function to query images or text based on a user query
 def search_query(query, mode="text"):
+    if not query:  # Check if the query is empty
+        return "No query provided", "Invalid input", "Query aborted"
+
     # Generate the query embedding
     start_time = time.time()  # Start time for query
-    inputs = clip_processor(text=query, return_tensors="pt", padding=True)
+    inputs = clip_processor(text=query, return_tensors="pt", padding=True, truncation=True, max_length=77)
     with torch.no_grad():
         query_embedding = clip_model.get_text_features(**inputs).numpy()
-    
+
     query_embedding = query_embedding.tolist()
-    
+    query_embedding = normalize(query_embedding)
+
     # Perform a vector search in the relevant collection
     collection = image_collection if mode == "image" else text_collection
     results = collection.query(query_embeddings=query_embedding, n_results=1)
@@ -220,15 +224,30 @@ def search_query(query, mode="text"):
 
     # Check if results are found
     if not results or not results['metadatas'][0]:
-        return "No results found", "No match", f"Query time: {query_time:.4f} seconds"
-    
+        return ("No results found for this query", "No match", 
+                f"Query time: {query_time:.4f} seconds")
+
     # Retrieve the result
     if mode == "image":
-        result_image_path = results['metadatas'][0][0]['image']
-        return Image.open(result_image_path), f"Top match: {result_image_path.split('/')[-1]}", f"Query time: {query_time:.4f} seconds"
+        result_image_path = results['metadatas'][0][0].get('image')
+        if result_image_path:
+            return (Image.open(result_image_path), 
+                    f"Top match: {result_image_path.split('/')[-1]}", 
+                    f"Query time: {query_time:.4f} seconds")
+        else:
+            return ("No image found for this query", 
+                    "No match", 
+                    f"Query time: {query_time:.4f} seconds")
     else:
-        result_text = results['metadatas'][0][0]['text']
-        return result_text, "Matched medical text case", f"Query time: {query_time:.4f} seconds"
+        result_text = results['metadatas'][0][0].get('text')
+        if result_text:
+            return (result_text, 
+                    "Matched medical text case", 
+                    f"Query time: {query_time:.4f} seconds")
+        else:
+            return ("No text found for this query", 
+                    "No match", 
+                    f"Query time: {query_time:.4f} seconds")
 
 # Gradio Interface for text search interaction
 def gradio_text_interface(query):
