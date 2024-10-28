@@ -4,12 +4,20 @@
 
 This project integrates ChromaDB, a powerful vector database, with custom performance optimization logic. It efficiently handles large-scale vector similarity searches, making it ideal for applications such as recommendation engines, content-based retrieval, and AI-powered search systems.
 
+## 🔗 Watch the Video Overview
+
+Click on the link for an in-depth walkthrough of the ChromaDB project, showcasing the core functionalities and optimizations.
+
+## 🔗 https://youtu.be/LZv_CGgmSCQ?feature=shared
+
 ## Key Features:
 
 ChromaDB for fast and scalable vector search.
 Custom performance logic for improved query efficiency.
 Easy-to-use Python interface for seamless integration.
-Table of Contents
+
+## Table of Contents
+
 Installation
 Usage
 Performance Considerations
@@ -21,7 +29,7 @@ To set up the project, you will need Python 3.8+ and some dependencies.
 
 1. Clone the Repository
 
-git clone 
+git clone
 
 git@github.com:Dannynsikak/vector-search-using-chromadb.git
 
@@ -133,3 +141,5 @@ Push the branch to your fork and submit a pull request.
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
+
+https://youtu.be/LZv_CGgmSCQ?feature=shared
