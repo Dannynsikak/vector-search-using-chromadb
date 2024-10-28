@@ -7,12 +7,12 @@ import time
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.preprocessing import normalize
 
-# Setup ChromaDB for Image and Text Collections
+# **Setup ChromaDB for Image and Text Collections**: initialize ChromaDB client and collections for image and text embeddings
 client = chromadb.Client()
 image_collection = client.create_collection("image_collection")
 text_collection = client.create_collection("text_collection")
 
-# Load CLIP model and processor for generating image and text embeddings
+# **Load CLIP Model and Processor**: Load pre-trained CLIP model and processor for generating image and text embeddings
 try:
     clip_model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
     clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
@@ -20,7 +20,7 @@ try:
 except Exception as e:
     print(f"Error loading CLIP model: {e}")
 
-# Function to preprocess and generate embeddings for images
+# **Preprocess and Generate Embeddings for Images**: Define function to preprocess images and generate normalized embeddings
 def process_images(image_paths):
     images = []
     for image_path in image_paths:
@@ -35,26 +35,27 @@ def process_images(image_paths):
     with torch.no_grad():
         image_embeddings = clip_model.get_image_features(**image_inputs).numpy()
     
-    # Normalize embeddings for better similarity accuracy
+    # **Normalize Embeddings for Accuracy**: Normalize embeddings to improve similarity accuracy
     image_embeddings = normalize(image_embeddings)
     return image_embeddings.tolist()
 
-# Function to preprocess and generate embeddings for text
+# **Preprocess and Generate Embeddings for Text**: Function to preprocess text and generate normalized embeddings
 def process_texts(texts):
     text_inputs = clip_processor(text=texts, return_tensors="pt", padding=True, truncation=True, max_length=77)
     
     with torch.no_grad():
         text_embeddings = clip_model.get_text_features(**text_inputs).numpy()
 
+    # Normalize embeddings for improved similarity calculation
     text_embeddings = normalize(text_embeddings)
     return text_embeddings.tolist()
 
-# Function to calculate similarity (accuracy score)
+# **Calculate Similarity**: Function to calculate similarity (accuracy score) between image and query embeddings
 def calculate_similarity(image_embedding, query_embedding):
     similarity = cosine_similarity([image_embedding], [query_embedding])[0][0]
     return similarity
 
-# Function to add embeddings to ChromaDB collections
+# **Add Embeddings to ChromaDB Collections**: Function to add embeddings to ChromaDB collections with time tracking
 def add_to_collection(collection, embeddings, metadatas, ids):
     start_time = time.time()  # Start time for adding to collection
     collection.add(embeddings=embeddings, metadatas=metadatas, ids=ids)
@@ -62,7 +63,7 @@ def add_to_collection(collection, embeddings, metadatas, ids):
     time_taken = f"Time taken to add to collection: {end_time - start_time:.4f} seconds"
     return time_taken
 
-# Load and preprocess images
+# **Load and Preprocess Images for Embedding Generation**
 image_paths = [
     "img/—Pngtree—brave firefighter clip art woman_13810240.png", 
     "img/—Pngtree—movement basketball logo_17325217.png",
@@ -86,7 +87,7 @@ image_paths = [
 start_ingestion_time = time.time()
 image_embeddings = process_images(image_paths)
 
-# Add image embeddings to the ChromaDB collection
+# **Add Image Embeddings to ChromaDB**: Ingest images into ChromaDB collection and track time taken
 ingestion_time_taken = add_to_collection(
     image_collection, 
     embeddings=image_embeddings, 
@@ -94,10 +95,11 @@ ingestion_time_taken = add_to_collection(
     ids=[str(i) for i in range(len(image_paths))]
 )
 
+# **Ingestion Performance Tracking**: Calculate and print image data ingestion time
 ingestion_time = time.time() - start_ingestion_time
 print(f"Image Data ingestion time: {ingestion_time:.4f} seconds")
 
-# Function to convert medical case dictionary into a descriptive string
+# **Convert Medical Case Data to Descriptive Text**: Function to convert medical case dictionary into a descriptive string
 def generate_medical_case(disease):
     description = (
         f"Disease Name: {disease['Disease Name']}\n"
@@ -113,7 +115,7 @@ def generate_medical_case(disease):
     )
     return description
 
-# Define medical texts for embedding and preprocess
+# **Medical Text Preprocessing**: Generate embeddings for medical texts and add to ChromaDB
 medical_texts = [
    {
     'Disease Name': 'Chronic Obstructive Pulmonary Disease (COPD)',
@@ -191,10 +193,8 @@ medical_texts = [
 
 # Convert structured medical data into descriptive strings
 medical_text_descriptions = [generate_medical_case(disease) for disease in medical_texts]
-
 # Preprocess texts and generate embeddings
 text_embeddings = process_texts(medical_text_descriptions)
-
 # Add text embeddings to ChromaDB collection
 text_ingestion_time_taken = add_to_collection(
     text_collection, 
@@ -202,8 +202,9 @@ text_ingestion_time_taken = add_to_collection(
     metadatas=[{"text": description} for description in medical_text_descriptions], 
     ids=[str(i) for i in range(len(medical_text_descriptions))]
 )
+print(f"Text Data ingestion time: {ingestion_time:.4f} seconds")
 
-# Function to query images or text based on a user query
+# **Search Query Handling**: Define search function to find matching embeddings based on user query
 def search_query(query, mode="text"):
     if not query:  # Check if the query is empty
         return "No query provided", "Invalid input", "Query aborted"
@@ -217,12 +218,12 @@ def search_query(query, mode="text"):
     query_embedding = query_embedding.tolist()
     query_embedding = normalize(query_embedding)
 
-    # Perform a vector search in the relevant collection
+    # Choose collection and perform vector search based on query mode
     collection = image_collection if mode == "image" else text_collection
     results = collection.query(query_embeddings=query_embedding, n_results=1)
     query_time = time.time() - start_time  # Measure query time
 
-    # Check if results are found
+    # Display search results or message if no results found
     if not results or not results['metadatas'][0]:
         return ("No results found for this query", "No match", 
                 f"Query time: {query_time:.4f} seconds")
@@ -249,7 +250,7 @@ def search_query(query, mode="text"):
                     "No match", 
                     f"Query time: {query_time:.4f} seconds")
 
-# Gradio Interface for text search interaction
+# **Gradio User Interface**: Create Gradio interface for text and image search with Blocks layout
 def gradio_text_interface(query):
     result, match_info, query_time = search_query(query, mode="text")
     return result, match_info, query_time
@@ -285,5 +286,5 @@ with gr.Blocks() as demo:
             # Link button to the search function
             image_button.click(gradio_image_interface, inputs=image_query, outputs=[image_output, image_text_output, image_query_time_output])
 
-# Launch the demo
+# Launch the demo interface
 demo.launch(share=True)
