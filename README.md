@@ -141,5 +141,3 @@ Push the branch to your fork and submit a pull request.
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
-
-https://youtu.be/LZv_CGgmSCQ?feature=shared
